@@ -27,6 +27,9 @@
   .credit { width: 100%; max-width: 380px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; font-size: 14px; line-height: 1.8; }
   .credit h2 { margin: 0 0 4px; font-size: 16px; }
   .credit p { margin: 0 0 8px; color: var(--muted); }
+  .credit .pay { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 0; border-top: 1px solid var(--line); }
+  .credit .pay b { direction: ltr; unicode-bidi: isolate; }
+  .credit .pay button { padding: 6px 12px; font-size: 13px; }
   .credit .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
   .credit .links a { text-decoration: none; padding: 7px 12px; font-size: 13px; }
   .login-box { width: 100%; max-width: 380px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 26px 22px; }
@@ -137,9 +140,13 @@
       اكتب باسورد جديد مرتين ← دوس «غيّر باسورد الموقع». وبعدها ادخل هنا بالباسورد الجديد.
     </div>
   </form>
-  <aside class="credit" aria-label="عن المصمم">
+  <aside class="credit" aria-label="عن المصمم والدعم">
     <h2>من تصميم محمد صلاح</h2>
-    <p style="margin:0">برامج تانية من نفس المصمم (دوس عشان تفتحها):</p>
+    <p>لو البرنامج نفعك وحابب تدعمني عشان أكمّل، أي مبلغ يفرق.</p>
+    <a class="btn block" style="margin-top:4px;text-decoration:none" href="https://ipn.eg/S/teto.2362006/instapay/6Qt402" target="_blank" rel="noopener">ادعم بإنستاباي</a>
+    <div class="pay" style="margin-top:10px"><span>عنوان إنستاباي<br><b>teto.2362006@instapay</b></span><button class="btn ghost" type="button" data-copy="teto.2362006@instapay">انسخ</button></div>
+    <div class="pay"><span>إنستاباي أو فودافون كاش<br><b>01031544361</b></span><button class="btn ghost" type="button" data-copy="01031544361">انسخ</button></div>
+    <p style="margin:10px 0 0">برامج تانية من نفس المصمم (دوس عشان تفتحها):</p>
     <div class="links">
       <a class="btn ghost" href="https://teto-boday.github.io/tuba/" target="_blank" rel="noopener">🌿 طُوبَى: قرآن وأذكار ومقاطع إسلامية</a>
       <a class="btn ghost" href="https://teto-boday.github.io/nonos-world/" target="_blank" rel="noopener">🌍 Nono's World</a>
@@ -662,6 +669,15 @@
   setInterval(function () { if (!$("app").classList.contains("hidden") && !$("sheet").innerHTML) load(false); }, 120000);
   window.__shop = { normalizeCode: normalizeCode, emailFor: emailFor, stockText: stockText };
 })();
+</script>
+<script>
+document.querySelectorAll(".credit [data-copy]").forEach(function (b) {
+  b.addEventListener("click", function () {
+    var v = b.getAttribute("data-copy"), o = b.textContent;
+    var done = function () { b.textContent = "✓ اتنسخ"; setTimeout(function () { b.textContent = o; }, 1600); };
+    if (navigator.clipboard) navigator.clipboard.writeText(v).then(done, done); else done();
+  });
+});
 </script>
 </body>
 </html>
